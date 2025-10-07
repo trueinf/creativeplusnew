@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LayoutDashboard, FileText, Palette, Workflow, BarChart3, FolderOpen, Bell, User, ChevronDown, Edit, Eye, Rocket, Copy, TrendingUp, Clock, CheckCircle2, Circle, AlertCircle, Sparkles, Download, Plus, Send, ChevronRight, RefreshCw, Globe, CheckCircle, AlertTriangle, Save, ArrowRight, Lightbulb } from 'lucide-react';
+import { LayoutDashboard, FileText, Palette, Workflow, BarChart3, FolderOpen, Bell, User, ChevronDown, Edit, Eye, Rocket, Copy, TrendingUp, Clock, CheckCircle2, Circle, AlertCircle, Sparkles, Download, Plus, Send, ChevronRight, RefreshCw, Globe, CheckCircle, AlertTriangle, Save, ArrowRight, Lightbulb, Image as ImageIcon, Zap, Layers } from 'lucide-react';
 type CampaignStatus = 'complete' | 'in-progress' | 'pending';
 type Campaign = {
   id: string;
@@ -33,6 +33,19 @@ type CopyVariant = {
   sentiment: string;
   compliance: 'approved' | 'warning';
   complianceMessage?: string;
+};
+type DesignAsset = {
+  id: string;
+  channel: string;
+  imageUrl: string;
+  predictedCTR?: number;
+  designMatch: number;
+  trendMatch: number;
+};
+type ComplianceItem = {
+  name: string;
+  status: 'pass' | 'pending' | 'fail';
+  message?: string;
 };
 type CreativePlusDashboardProps = Record<string, never>;
 const StatusIcon = ({
@@ -197,6 +210,71 @@ export const CreativePlusDashboard = (_props: CreativePlusDashboardProps) => {
     type: 'audience',
     title: 'Compliance Alert',
     description: 'Ensure "Save 20%" is paired with terms & conditions in the body copy. Avoid discount-only language.'
+  }]);
+  const [designInsights] = useState<Insight[]>([{
+    id: '1',
+    type: 'brand',
+    title: 'Tropical Beach Performance',
+    description: 'Images with tropical beaches and sunset tones had a +18% CTR last year for similar campaigns.'
+  }, {
+    id: '2',
+    type: 'brand',
+    title: 'Instagram Ad Colors',
+    description: 'Instagram ads with bright, saturated images outperform those with muted tones by 15%.'
+  }, {
+    id: '3',
+    type: 'social',
+    title: '#CruiseGoals Trending',
+    description: '#CruiseGoals is trending on Instagram, with +25% engagement this week.'
+  }, {
+    id: '4',
+    type: 'social',
+    title: 'TikTok Deck Views',
+    description: 'TikTok influencers with videos showing cruise ship deck views generated +30% higher interactions.'
+  }, {
+    id: '5',
+    type: 'audience',
+    title: 'FR-CA Visual Preferences',
+    description: 'FR-CA audiences respond better to cooler tones, like icy blues and snow-capped mountains for Alaska cruises.'
+  }]);
+  const [designAssets] = useState<DesignAsset[]>([{
+    id: '1',
+    channel: 'Email',
+    imageUrl: '🏖️',
+    predictedCTR: 9.1,
+    designMatch: 97,
+    trendMatch: 92
+  }, {
+    id: '2',
+    channel: 'Instagram',
+    imageUrl: '🚢',
+    predictedCTR: 8.3,
+    designMatch: 95,
+    trendMatch: 90
+  }, {
+    id: '3',
+    channel: 'Push Notification',
+    imageUrl: '🏝️',
+    predictedCTR: 8.7,
+    designMatch: 94,
+    trendMatch: 88
+  }, {
+    id: '4',
+    channel: 'FR-CA Email',
+    imageUrl: '🌴',
+    designMatch: 90,
+    trendMatch: 85
+  }]);
+  const [complianceItems] = useState<ComplianceItem[]>([{
+    name: 'Brand Consistency',
+    status: 'pass'
+  }, {
+    name: 'Legal Compliance (T&Cs)',
+    status: 'pending',
+    message: 'Review Legal Disclaimer'
+  }, {
+    name: 'Text Overlay Fit',
+    status: 'pass'
   }]);
   const navItems = [{
     name: 'Dashboard',
@@ -988,32 +1066,494 @@ export const CreativePlusDashboard = (_props: CreativePlusDashboardProps) => {
         </motion.div>
       </div>
     </div>;
+  const renderDesignStudio = () => <div data-magicpath-id="286" data-magicpath-path="CreativePlusDashboard.tsx">
+      <motion.div initial={{
+      opacity: 0,
+      y: 20
+    }} animate={{
+      opacity: 1,
+      y: 0
+    }} className="mb-6" data-magicpath-id="287" data-magicpath-path="CreativePlusDashboard.tsx">
+        <div className="flex items-center text-sm text-gray-500 mb-4" data-magicpath-id="288" data-magicpath-path="CreativePlusDashboard.tsx">
+          <span data-magicpath-id="289" data-magicpath-path="CreativePlusDashboard.tsx">Dashboard</span>
+          <ChevronRight className="w-4 h-4 mx-2" data-magicpath-id="290" data-magicpath-path="CreativePlusDashboard.tsx" />
+          <span data-magicpath-id="291" data-magicpath-path="CreativePlusDashboard.tsx">Sail into 2025</span>
+          <ChevronRight className="w-4 h-4 mx-2" data-magicpath-id="292" data-magicpath-path="CreativePlusDashboard.tsx" />
+          <span className="text-[#0055A5] font-medium" data-magicpath-id="293" data-magicpath-path="CreativePlusDashboard.tsx">Design Studio</span>
+        </div>
+
+        <div className="flex items-center justify-between" data-magicpath-id="294" data-magicpath-path="CreativePlusDashboard.tsx">
+          <div data-magicpath-id="295" data-magicpath-path="CreativePlusDashboard.tsx">
+            <h2 className="text-3xl font-bold text-gray-900 mb-2" data-magicpath-id="296" data-magicpath-path="CreativePlusDashboard.tsx">Design Studio</h2>
+            <div className="flex items-center space-x-4" data-magicpath-id="297" data-magicpath-path="CreativePlusDashboard.tsx">
+              <span className="text-gray-600" data-magicpath-id="298" data-magicpath-path="CreativePlusDashboard.tsx">Campaign: Sail into 2025</span>
+              <div className="flex items-center space-x-2" data-magicpath-id="299" data-magicpath-path="CreativePlusDashboard.tsx">
+                <span className="text-sm text-gray-500" data-magicpath-id="300" data-magicpath-path="CreativePlusDashboard.tsx">Status:</span>
+                <div className="flex items-center space-x-1" data-magicpath-id="301" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <CheckCircle2 className="w-4 h-4 text-[#00A3E0]" data-magicpath-id="302" data-magicpath-path="CreativePlusDashboard.tsx" />
+                  <span className="text-sm text-gray-600" data-magicpath-id="303" data-magicpath-path="CreativePlusDashboard.tsx">Copy</span>
+                </div>
+                <div className="flex items-center space-x-1" data-magicpath-id="304" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <Clock className="w-4 h-4 text-[#FDB913]" data-magicpath-id="305" data-magicpath-path="CreativePlusDashboard.tsx" />
+                  <span className="text-sm text-gray-600" data-magicpath-id="306" data-magicpath-path="CreativePlusDashboard.tsx">Design</span>
+                </div>
+                <div className="flex items-center space-x-1" data-magicpath-id="307" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <Circle className="w-4 h-4 text-gray-300" />
+                  <span className="text-sm text-gray-600" data-magicpath-id="308" data-magicpath-path="CreativePlusDashboard.tsx">Workflow</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-3" data-magicpath-id="309" data-magicpath-path="CreativePlusDashboard.tsx">
+            <div className="flex items-center bg-white border border-gray-200 rounded-lg overflow-hidden" data-magicpath-id="310" data-magicpath-path="CreativePlusDashboard.tsx">
+              <button onClick={() => setLanguage('EN')} className={`px-4 py-2 text-sm font-medium transition-colors ${language === 'EN' ? 'bg-[#00A3E0] text-white' : 'text-gray-600 hover:bg-gray-50'}`} data-magicpath-id="311" data-magicpath-path="CreativePlusDashboard.tsx">
+                🇺🇸 EN
+              </button>
+              <button onClick={() => setLanguage('FR-CA')} className={`px-4 py-2 text-sm font-medium transition-colors ${language === 'FR-CA' ? 'bg-[#00A3E0] text-white' : 'text-gray-600 hover:bg-gray-50'}`} data-magicpath-id="312" data-magicpath-path="CreativePlusDashboard.tsx">
+                🇨🇦 FR-CA
+              </button>
+            </div>
+
+            <motion.button whileHover={{
+            scale: 1.05
+          }} whileTap={{
+            scale: 0.95
+          }} className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-[#00A3E0] to-[#0055A5] text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all" data-magicpath-id="313" data-magicpath-path="CreativePlusDashboard.tsx">
+              <ArrowRight className="w-4 h-4" data-magicpath-id="314" data-magicpath-path="CreativePlusDashboard.tsx" />
+              <span data-magicpath-id="315" data-magicpath-path="CreativePlusDashboard.tsx">Move to Workflow Center</span>
+            </motion.button>
+          </div>
+        </div>
+      </motion.div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6" data-magicpath-id="316" data-magicpath-path="CreativePlusDashboard.tsx">
+        <motion.div initial={{
+        opacity: 0,
+        x: -20
+      }} animate={{
+        opacity: 1,
+        x: 0
+      }} transition={{
+        delay: 0.1
+      }} className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-magicpath-id="317" data-magicpath-path="CreativePlusDashboard.tsx">
+          <div className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-[#0055A5]/5 to-[#00A3E0]/5" data-magicpath-id="318" data-magicpath-path="CreativePlusDashboard.tsx">
+            <div className="flex items-center justify-between" data-magicpath-id="319" data-magicpath-path="CreativePlusDashboard.tsx">
+              <h3 className="text-lg font-bold text-gray-900" data-magicpath-id="320" data-magicpath-path="CreativePlusDashboard.tsx">Design Brief</h3>
+              <motion.button whileHover={{
+              scale: 1.1,
+              rotate: 90
+            }} whileTap={{
+              scale: 0.9
+            }} className="p-1 text-[#0055A5] hover:bg-[#00A3E0]/10 rounded transition-colors" data-magicpath-id="321" data-magicpath-path="CreativePlusDashboard.tsx">
+                <RefreshCw className="w-4 h-4" data-magicpath-id="322" data-magicpath-path="CreativePlusDashboard.tsx" />
+              </motion.button>
+            </div>
+          </div>
+
+          <div className="p-6 space-y-4" data-magicpath-id="323" data-magicpath-path="CreativePlusDashboard.tsx">
+            <div data-magicpath-id="324" data-magicpath-path="CreativePlusDashboard.tsx">
+              <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2" data-magicpath-id="325" data-magicpath-path="CreativePlusDashboard.tsx">Objective</h4>
+              <p className="text-sm text-gray-700 leading-relaxed" data-magicpath-id="326" data-magicpath-path="CreativePlusDashboard.tsx">
+                Promote early bird discounts for Caribbean & Alaska cruises for 2025.
+              </p>
+            </div>
+
+            <div data-magicpath-id="327" data-magicpath-path="CreativePlusDashboard.tsx">
+              <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2" data-magicpath-id="328" data-magicpath-path="CreativePlusDashboard.tsx">Visual Goals</h4>
+              <p className="text-sm text-gray-700 leading-relaxed" data-magicpath-id="329" data-magicpath-path="CreativePlusDashboard.tsx">
+                Showcase tropical beach vibes and stunning ship amenities.
+              </p>
+            </div>
+
+            <div data-magicpath-id="330" data-magicpath-path="CreativePlusDashboard.tsx">
+              <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2" data-magicpath-id="331" data-magicpath-path="CreativePlusDashboard.tsx">Key Copy</h4>
+              <p className="text-sm text-gray-700 leading-relaxed italic" data-magicpath-id="332" data-magicpath-path="CreativePlusDashboard.tsx">
+                "Escape to Paradise — Book Your Dream Caribbean Cruise Today!"
+              </p>
+            </div>
+
+            <div data-magicpath-id="333" data-magicpath-path="CreativePlusDashboard.tsx">
+              <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2" data-magicpath-id="334" data-magicpath-path="CreativePlusDashboard.tsx">Tone & Palette</h4>
+              <div className="space-y-2" data-magicpath-id="335" data-magicpath-path="CreativePlusDashboard.tsx">
+                <div className="flex flex-wrap gap-2" data-magicpath-id="336" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <span className="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs font-medium rounded" data-magicpath-id="337" data-magicpath-path="CreativePlusDashboard.tsx">
+                    Fun
+                  </span>
+                  <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded" data-magicpath-id="338" data-magicpath-path="CreativePlusDashboard.tsx">
+                    Adventurous
+                  </span>
+                </div>
+                <div className="flex gap-2" data-magicpath-id="339" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <div className="w-8 h-8 rounded bg-[#FDB913] border-2 border-gray-200" title="Golden Yellow" data-magicpath-id="340" data-magicpath-path="CreativePlusDashboard.tsx" />
+                  <div className="w-8 h-8 rounded bg-[#00A3E0] border-2 border-gray-200" title="Sky Blue" data-magicpath-id="341" data-magicpath-path="CreativePlusDashboard.tsx" />
+                  <div className="w-8 h-8 rounded bg-[#0055A5] border-2 border-gray-200" title="Deep Blue" data-magicpath-id="342" data-magicpath-path="CreativePlusDashboard.tsx" />
+                </div>
+              </div>
+            </div>
+
+            <div data-magicpath-id="343" data-magicpath-path="CreativePlusDashboard.tsx">
+              <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2" data-magicpath-id="344" data-magicpath-path="CreativePlusDashboard.tsx">Assets Needed</h4>
+              <div className="flex flex-wrap gap-2" data-magicpath-id="345" data-magicpath-path="CreativePlusDashboard.tsx">
+                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded" data-magicpath-id="346" data-magicpath-path="CreativePlusDashboard.tsx">
+                  Email Hero
+                </span>
+                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded" data-magicpath-id="347" data-magicpath-path="CreativePlusDashboard.tsx">
+                  Instagram Ad
+                </span>
+                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded" data-magicpath-id="348" data-magicpath-path="CreativePlusDashboard.tsx">
+                  Facebook Banner
+                </span>
+                <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded" data-magicpath-id="349" data-magicpath-path="CreativePlusDashboard.tsx">
+                  Push Notification
+                </span>
+              </div>
+            </div>
+
+            <div data-magicpath-id="350" data-magicpath-path="CreativePlusDashboard.tsx">
+              <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2" data-magicpath-id="351" data-magicpath-path="CreativePlusDashboard.tsx">Localization</h4>
+              <p className="text-sm text-gray-700 leading-relaxed" data-magicpath-id="352" data-magicpath-path="CreativePlusDashboard.tsx">
+                Ensure FR-CA design is available for French-speaking markets.
+              </p>
+            </div>
+
+            <motion.button whileHover={{
+            scale: 1.02
+          }} whileTap={{
+            scale: 0.98
+          }} className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors" data-magicpath-id="353" data-magicpath-path="CreativePlusDashboard.tsx">
+              <RefreshCw className="w-4 h-4" data-magicpath-id="354" data-magicpath-path="CreativePlusDashboard.tsx" />
+              <span data-magicpath-id="355" data-magicpath-path="CreativePlusDashboard.tsx">Refresh from Workfront</span>
+            </motion.button>
+          </div>
+        </motion.div>
+
+        <div className="lg:col-span-2 space-y-6" data-magicpath-id="356" data-magicpath-path="CreativePlusDashboard.tsx">
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          delay: 0.2
+        }} className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-magicpath-id="357" data-magicpath-path="CreativePlusDashboard.tsx">
+            <div className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-[#0055A5]/5 to-[#00A3E0]/5" data-magicpath-id="358" data-magicpath-path="CreativePlusDashboard.tsx">
+              <h3 className="text-lg font-bold text-gray-900" data-magicpath-id="359" data-magicpath-path="CreativePlusDashboard.tsx">AI Design Prompt Composer</h3>
+            </div>
+
+            <div className="p-6" data-magicpath-id="360" data-magicpath-path="CreativePlusDashboard.tsx">
+              <div className="space-y-4 mb-6" data-magicpath-id="361" data-magicpath-path="CreativePlusDashboard.tsx">
+                <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg p-4 border border-amber-200" data-magicpath-id="362" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <div className="flex items-start space-x-3" data-magicpath-id="363" data-magicpath-path="CreativePlusDashboard.tsx">
+                    <Zap className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" data-magicpath-id="364" data-magicpath-path="CreativePlusDashboard.tsx" />
+                    <div className="flex-1" data-magicpath-id="365" data-magicpath-path="CreativePlusDashboard.tsx">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2" data-magicpath-id="366" data-magicpath-path="CreativePlusDashboard.tsx">Caribbean Cruise Design Prompt</h4>
+                      <p className="text-sm text-gray-700 leading-relaxed" data-magicpath-id="367" data-magicpath-path="CreativePlusDashboard.tsx">
+                        Generate 3 hero images with a tropical beach view, golden hues, and people relaxing on the beach. 
+                        Ensure a relaxing, escape-focused theme. Text overlay: "Book Your Dream Cruise Today!" Use 
+                        #CruiseGoals for Instagram.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-4 border border-blue-200" data-magicpath-id="368" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <div className="flex items-start space-x-3" data-magicpath-id="369" data-magicpath-path="CreativePlusDashboard.tsx">
+                    <Zap className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" data-magicpath-id="370" data-magicpath-path="CreativePlusDashboard.tsx" />
+                    <div className="flex-1" data-magicpath-id="371" data-magicpath-path="CreativePlusDashboard.tsx">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2" data-magicpath-id="372" data-magicpath-path="CreativePlusDashboard.tsx">Alaska Cruise Design Prompt</h4>
+                      <p className="text-sm text-gray-700 leading-relaxed" data-magicpath-id="373" data-magicpath-path="CreativePlusDashboard.tsx">
+                        Generate 3 hero images with snowy mountains and the cruise ship deck. Use cool tones (icy blues), 
+                        focus on the adventure theme. Text overlay: "Your Alaskan Adventure Starts Here."
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <motion.button whileHover={{
+              scale: 1.02
+            }} whileTap={{
+              scale: 0.98
+            }} className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all" data-magicpath-id="374" data-magicpath-path="CreativePlusDashboard.tsx">
+                <Sparkles className="w-5 h-5" />
+                <span data-magicpath-id="375" data-magicpath-path="CreativePlusDashboard.tsx">Generate Design Variants</span>
+              </motion.button>
+            </div>
+          </motion.div>
+
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          delay: 0.3
+        }} className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-magicpath-id="376" data-magicpath-path="CreativePlusDashboard.tsx">
+            <div className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-[#0055A5]/5 to-[#00A3E0]/5" data-magicpath-id="377" data-magicpath-path="CreativePlusDashboard.tsx">
+              <h3 className="text-lg font-bold text-gray-900" data-magicpath-id="378" data-magicpath-path="CreativePlusDashboard.tsx">Design Variant Gallery</h3>
+            </div>
+
+            <div className="p-6" data-magicpath-id="379" data-magicpath-path="CreativePlusDashboard.tsx">
+              <div className="grid grid-cols-1 gap-4" data-magicpath-id="380" data-magicpath-path="CreativePlusDashboard.tsx">
+                {designAssets.map((asset, index) => <motion.div key={asset.id} initial={{
+                opacity: 0,
+                y: 20
+              }} animate={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                delay: 0.1 * index
+              }} className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-5 border border-gray-200 hover:border-[#00A3E0]/30 transition-all" data-magicpath-id="381" data-magicpath-path="CreativePlusDashboard.tsx">
+                    <div className="flex items-start space-x-4" data-magicpath-id="382" data-magicpath-path="CreativePlusDashboard.tsx">
+                      <div className="w-32 h-32 bg-gradient-to-br from-[#00A3E0]/20 to-[#0055A5]/20 rounded-lg flex items-center justify-center text-6xl border-2 border-dashed border-[#00A3E0]/30" data-magicpath-id="383" data-magicpath-path="CreativePlusDashboard.tsx">
+                        {asset.imageUrl}
+                      </div>
+
+                      <div className="flex-1" data-magicpath-id="384" data-magicpath-path="CreativePlusDashboard.tsx">
+                        <div className="flex items-center space-x-2 mb-3" data-magicpath-id="385" data-magicpath-path="CreativePlusDashboard.tsx">
+                          <span className="px-2 py-1 bg-[#00A3E0]/10 text-[#0055A5] text-xs font-semibold rounded" data-magicpath-id="386" data-magicpath-path="CreativePlusDashboard.tsx">
+                            #{asset.id}
+                          </span>
+                          <span className="px-2 py-1 bg-gray-200 text-gray-700 text-xs font-medium rounded" data-magicpath-id="387" data-magicpath-path="CreativePlusDashboard.tsx">
+                            {asset.channel}
+                          </span>
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-3 mb-4" data-magicpath-id="388" data-magicpath-path="CreativePlusDashboard.tsx">
+                          {asset.predictedCTR && <div className="bg-white rounded p-2 border border-gray-200" data-magicpath-id="389" data-magicpath-path="CreativePlusDashboard.tsx">
+                              <span className="text-xs text-gray-500" data-magicpath-id="390" data-magicpath-path="CreativePlusDashboard.tsx">Predicted CTR</span>
+                              <div className="text-sm font-bold text-gray-900" data-magicpath-id="391" data-magicpath-path="CreativePlusDashboard.tsx">{asset.predictedCTR}%</div>
+                            </div>}
+                          <div className="bg-white rounded p-2 border border-gray-200" data-magicpath-id="392" data-magicpath-path="CreativePlusDashboard.tsx">
+                            <span className="text-xs text-gray-500" data-magicpath-id="393" data-magicpath-path="CreativePlusDashboard.tsx">Design Match</span>
+                            <div className="text-sm font-bold text-[#00A3E0]" data-magicpath-id="394" data-magicpath-path="CreativePlusDashboard.tsx">{asset.designMatch}%</div>
+                          </div>
+                          <div className="bg-white rounded p-2 border border-gray-200" data-magicpath-id="395" data-magicpath-path="CreativePlusDashboard.tsx">
+                            <span className="text-xs text-gray-500" data-magicpath-id="396" data-magicpath-path="CreativePlusDashboard.tsx">Trend Match</span>
+                            <div className="text-sm font-bold text-purple-600" data-magicpath-id="397" data-magicpath-path="CreativePlusDashboard.tsx">{asset.trendMatch}%</div>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center space-x-2" data-magicpath-id="398" data-magicpath-path="CreativePlusDashboard.tsx">
+                          <motion.button whileHover={{
+                        scale: 1.05
+                      }} whileTap={{
+                        scale: 0.95
+                      }} className="flex-1 flex items-center justify-center space-x-2 px-3 py-2 bg-white border border-gray-300 hover:border-[#00A3E0] text-gray-700 hover:text-[#0055A5] font-medium rounded-lg transition-all text-sm" data-magicpath-id="399" data-magicpath-path="CreativePlusDashboard.tsx">
+                            <Edit className="w-4 h-4" data-magicpath-id="400" data-magicpath-path="CreativePlusDashboard.tsx" />
+                            <span data-magicpath-id="401" data-magicpath-path="CreativePlusDashboard.tsx">Edit</span>
+                          </motion.button>
+                          <motion.button whileHover={{
+                        scale: 1.05
+                      }} whileTap={{
+                        scale: 0.95
+                      }} className="flex items-center justify-center space-x-2 px-3 py-2 bg-white border border-gray-300 hover:border-[#00A3E0] text-gray-700 hover:text-[#0055A5] font-medium rounded-lg transition-all text-sm" data-magicpath-id="402" data-magicpath-path="CreativePlusDashboard.tsx">
+                            <Download className="w-4 h-4" data-magicpath-id="403" data-magicpath-path="CreativePlusDashboard.tsx" />
+                          </motion.button>
+                          <motion.button whileHover={{
+                        scale: 1.05
+                      }} whileTap={{
+                        scale: 0.95
+                      }} className="flex-1 flex items-center justify-center space-x-2 px-3 py-2 bg-gradient-to-r from-[#00A3E0] to-[#0055A5] text-white font-medium rounded-lg shadow hover:shadow-md transition-all text-sm" data-magicpath-id="404" data-magicpath-path="CreativePlusDashboard.tsx">
+                            <CheckCircle className="w-4 h-4" data-magicpath-id="405" data-magicpath-path="CreativePlusDashboard.tsx" />
+                            <span data-magicpath-id="406" data-magicpath-path="CreativePlusDashboard.tsx">Approve</span>
+                          </motion.button>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>)}
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          delay: 0.4
+        }} className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-magicpath-id="407" data-magicpath-path="CreativePlusDashboard.tsx">
+            <div className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-purple-500/5 to-pink-500/5" data-magicpath-id="408" data-magicpath-path="CreativePlusDashboard.tsx">
+              <div className="flex items-center space-x-2" data-magicpath-id="409" data-magicpath-path="CreativePlusDashboard.tsx">
+                <Globe className="w-5 h-5 text-purple-600" data-magicpath-id="410" data-magicpath-path="CreativePlusDashboard.tsx" />
+                <h3 className="text-lg font-bold text-gray-900" data-magicpath-id="411" data-magicpath-path="CreativePlusDashboard.tsx">Localization & Translation</h3>
+              </div>
+            </div>
+
+            <div className="p-6" data-magicpath-id="412" data-magicpath-path="CreativePlusDashboard.tsx">
+              <div className="grid grid-cols-2 gap-4 mb-6" data-magicpath-id="413" data-magicpath-path="CreativePlusDashboard.tsx">
+                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200" data-magicpath-id="414" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <div className="flex items-center justify-between mb-3" data-magicpath-id="415" data-magicpath-path="CreativePlusDashboard.tsx">
+                    <span className="text-xs font-semibold text-blue-700" data-magicpath-id="416" data-magicpath-path="CreativePlusDashboard.tsx">🇺🇸 EN Design</span>
+                  </div>
+                  <div className="w-full h-32 bg-gradient-to-br from-[#00A3E0]/20 to-[#0055A5]/20 rounded flex items-center justify-center text-4xl border-2 border-dashed border-blue-300" data-magicpath-id="417" data-magicpath-path="CreativePlusDashboard.tsx">
+                    🏖️
+                  </div>
+                  <p className="text-xs text-gray-700 mt-2 font-medium" data-magicpath-id="418" data-magicpath-path="CreativePlusDashboard.tsx">
+                    Book Your Dream Cruise Today!
+                  </p>
+                </div>
+
+                <div className="bg-purple-50 rounded-lg p-4 border border-purple-200" data-magicpath-id="419" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <div className="flex items-center justify-between mb-3" data-magicpath-id="420" data-magicpath-path="CreativePlusDashboard.tsx">
+                    <span className="text-xs font-semibold text-purple-700" data-magicpath-id="421" data-magicpath-path="CreativePlusDashboard.tsx">🇨🇦 FR-CA Design</span>
+                  </div>
+                  <div className="w-full h-32 bg-gradient-to-br from-purple-200/40 to-pink-200/40 rounded flex items-center justify-center text-4xl border-2 border-dashed border-purple-300" data-magicpath-id="422" data-magicpath-path="CreativePlusDashboard.tsx">
+                    🌴
+                  </div>
+                  <p className="text-xs text-gray-700 mt-2 font-medium" data-magicpath-id="423" data-magicpath-path="CreativePlusDashboard.tsx">
+                    Réservez votre croisière de rêve aujourd'hui!
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-2" data-magicpath-id="424" data-magicpath-path="CreativePlusDashboard.tsx">
+                <motion.button whileHover={{
+                scale: 1.05
+              }} whileTap={{
+                scale: 0.95
+              }} className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-purple-100 hover:bg-purple-200 text-purple-700 font-medium rounded-lg transition-all" data-magicpath-id="425" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <Globe className="w-4 h-4" data-magicpath-id="426" data-magicpath-path="CreativePlusDashboard.tsx" />
+                  <span data-magicpath-id="427" data-magicpath-path="CreativePlusDashboard.tsx">Generate Localized Visuals</span>
+                </motion.button>
+                <motion.button whileHover={{
+                scale: 1.05
+              }} whileTap={{
+                scale: 0.95
+              }} className="flex items-center justify-center space-x-2 px-4 py-2 bg-white border border-purple-300 hover:border-purple-400 text-purple-700 font-medium rounded-lg transition-all" data-magicpath-id="428" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <Eye className="w-4 h-4" data-magicpath-id="429" data-magicpath-path="CreativePlusDashboard.tsx" />
+                  <span data-magicpath-id="430" data-magicpath-path="CreativePlusDashboard.tsx">Preview</span>
+                </motion.button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.div initial={{
+        opacity: 0,
+        x: 20
+      }} animate={{
+        opacity: 1,
+        x: 0
+      }} transition={{
+        delay: 0.1
+      }} className="space-y-6" data-magicpath-id="431" data-magicpath-path="CreativePlusDashboard.tsx">
+          <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-magicpath-id="432" data-magicpath-path="CreativePlusDashboard.tsx">
+            <div className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-[#0055A5]/5 to-[#00A3E0]/5" data-magicpath-id="433" data-magicpath-path="CreativePlusDashboard.tsx">
+              <div className="flex items-center space-x-2" data-magicpath-id="434" data-magicpath-path="CreativePlusDashboard.tsx">
+                <Sparkles className="w-5 h-5 text-[#00A3E0]" />
+                <h3 className="text-lg font-bold text-gray-900" data-magicpath-id="435" data-magicpath-path="CreativePlusDashboard.tsx">AI Insights</h3>
+              </div>
+            </div>
+
+            <div className="p-4 space-y-3 max-h-[400px] overflow-y-auto" data-magicpath-id="436" data-magicpath-path="CreativePlusDashboard.tsx">
+              {designInsights.map((insight, index) => <motion.div key={insight.id} initial={{
+              opacity: 0,
+              y: 20
+            }} animate={{
+              opacity: 1,
+              y: 0
+            }} transition={{
+              delay: index * 0.1
+            }} whileHover={{
+              scale: 1.02
+            }} className={`p-3 rounded-lg border transition-all cursor-pointer ${insight.type === 'brand' ? 'bg-blue-50/50 border-blue-200 hover:bg-blue-50' : insight.type === 'social' ? 'bg-purple-50/50 border-purple-200 hover:bg-purple-50' : 'bg-green-50/50 border-green-200 hover:bg-green-50'}`} data-magicpath-id="437" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <h4 className="font-semibold text-gray-900 text-xs mb-1" data-magicpath-id="438" data-magicpath-path="CreativePlusDashboard.tsx">{insight.title}</h4>
+                  <p className="text-xs text-gray-600 leading-relaxed" data-magicpath-id="439" data-magicpath-path="CreativePlusDashboard.tsx">{insight.description}</p>
+                  <motion.button whileHover={{
+                scale: 1.05
+              }} whileTap={{
+                scale: 0.95
+              }} className="mt-2 text-xs font-medium text-[#0055A5] hover:text-[#00A3E0] transition-colors" data-magicpath-id="440" data-magicpath-path="CreativePlusDashboard.tsx">
+                    Apply Insight →
+                  </motion.button>
+                </motion.div>)}
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" data-magicpath-id="441" data-magicpath-path="CreativePlusDashboard.tsx">
+            <div className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-[#0055A5]/5 to-[#00A3E0]/5" data-magicpath-id="442" data-magicpath-path="CreativePlusDashboard.tsx">
+              <div className="flex items-center space-x-2" data-magicpath-id="443" data-magicpath-path="CreativePlusDashboard.tsx">
+                <Layers className="w-5 h-5 text-[#0055A5]" data-magicpath-id="444" data-magicpath-path="CreativePlusDashboard.tsx" />
+                <h3 className="text-lg font-bold text-gray-900" data-magicpath-id="445" data-magicpath-path="CreativePlusDashboard.tsx">Compliance & Approval</h3>
+              </div>
+            </div>
+
+            <div className="p-6" data-magicpath-id="446" data-magicpath-path="CreativePlusDashboard.tsx">
+              <div className="space-y-3 mb-6" data-magicpath-id="447" data-magicpath-path="CreativePlusDashboard.tsx">
+                {complianceItems.map((item, idx) => <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200" data-magicpath-id="448" data-magicpath-path="CreativePlusDashboard.tsx">
+                    <span className="text-sm font-medium text-gray-700" data-magicpath-id="449" data-magicpath-path="CreativePlusDashboard.tsx">{item.name}</span>
+                    <div className="flex items-center space-x-2" data-magicpath-id="450" data-magicpath-path="CreativePlusDashboard.tsx">
+                      {item.status === 'pass' && <CheckCircle className="w-5 h-5 text-green-600" data-magicpath-id="451" data-magicpath-path="CreativePlusDashboard.tsx" />}
+                      {item.status === 'pending' && <AlertTriangle className="w-5 h-5 text-yellow-600" data-magicpath-id="452" data-magicpath-path="CreativePlusDashboard.tsx" />}
+                      {item.status === 'fail' && <AlertCircle className="w-5 h-5 text-red-600" data-magicpath-id="453" data-magicpath-path="CreativePlusDashboard.tsx" />}
+                      {item.message && <span className="text-xs text-gray-600" data-magicpath-id="454" data-magicpath-path="CreativePlusDashboard.tsx">{item.message}</span>}
+                    </div>
+                  </div>)}
+              </div>
+
+              <div className="space-y-2" data-magicpath-id="455" data-magicpath-path="CreativePlusDashboard.tsx">
+                <motion.button whileHover={{
+                scale: 1.05
+              }} whileTap={{
+                scale: 0.95
+              }} className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-yellow-100 hover:bg-yellow-200 text-yellow-700 font-semibold rounded-lg transition-colors" data-magicpath-id="456" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <AlertTriangle className="w-4 h-4" data-magicpath-id="457" data-magicpath-path="CreativePlusDashboard.tsx" />
+                  <span data-magicpath-id="458" data-magicpath-path="CreativePlusDashboard.tsx">Send for Legal Approval</span>
+                </motion.button>
+                <motion.button whileHover={{
+                scale: 1.05
+              }} whileTap={{
+                scale: 0.95
+              }} className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all" data-magicpath-id="459" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <ArrowRight className="w-4 h-4" data-magicpath-id="460" data-magicpath-path="CreativePlusDashboard.tsx" />
+                  <span data-magicpath-id="461" data-magicpath-path="CreativePlusDashboard.tsx">Approve & Send to Workflow</span>
+                </motion.button>
+                <motion.button whileHover={{
+                scale: 1.05
+              }} whileTap={{
+                scale: 0.95
+              }} className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-white border border-gray-300 hover:border-gray-400 text-gray-700 font-medium rounded-lg transition-colors" data-magicpath-id="462" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <Save className="w-4 h-4" data-magicpath-id="463" data-magicpath-path="CreativePlusDashboard.tsx" />
+                  <span data-magicpath-id="464" data-magicpath-path="CreativePlusDashboard.tsx">Save Draft</span>
+                </motion.button>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>;
 
   // @return
-  return <div className="min-h-screen bg-gradient-to-br from-[#F5FAFB] to-[#E8F4F8] w-full" data-magicpath-id="286" data-magicpath-path="CreativePlusDashboard.tsx">
-      <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm" data-magicpath-id="287" data-magicpath-path="CreativePlusDashboard.tsx">
-        <div className="px-8 py-4" data-magicpath-id="288" data-magicpath-path="CreativePlusDashboard.tsx">
-          <div className="flex items-center justify-between" data-magicpath-id="289" data-magicpath-path="CreativePlusDashboard.tsx">
-            <div className="flex items-center space-x-12" data-magicpath-id="290" data-magicpath-path="CreativePlusDashboard.tsx">
+  return <div className="min-h-screen bg-gradient-to-br from-[#F5FAFB] to-[#E8F4F8] w-full" data-magicpath-id="465" data-magicpath-path="CreativePlusDashboard.tsx">
+      <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm" data-magicpath-id="466" data-magicpath-path="CreativePlusDashboard.tsx">
+        <div className="px-8 py-4" data-magicpath-id="467" data-magicpath-path="CreativePlusDashboard.tsx">
+          <div className="flex items-center justify-between" data-magicpath-id="468" data-magicpath-path="CreativePlusDashboard.tsx">
+            <div className="flex items-center space-x-12" data-magicpath-id="469" data-magicpath-path="CreativePlusDashboard.tsx">
               <motion.div initial={{
               opacity: 0,
               x: -20
             }} animate={{
               opacity: 1,
               x: 0
-            }} className="flex items-center space-x-3" data-magicpath-id="291" data-magicpath-path="CreativePlusDashboard.tsx">
-                <div className="w-10 h-10 bg-gradient-to-br from-[#00A3E0] to-[#0055A5] rounded-lg flex items-center justify-center" data-magicpath-id="292" data-magicpath-path="CreativePlusDashboard.tsx">
+            }} className="flex items-center space-x-3" data-magicpath-id="470" data-magicpath-path="CreativePlusDashboard.tsx">
+                <div className="w-10 h-10 bg-gradient-to-br from-[#00A3E0] to-[#0055A5] rounded-lg flex items-center justify-center" data-magicpath-id="471" data-magicpath-path="CreativePlusDashboard.tsx">
                   <Sparkles className="w-6 h-6 text-white" />
                 </div>
-                <div data-magicpath-id="293" data-magicpath-path="CreativePlusDashboard.tsx">
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-[#0055A5] to-[#00A3E0] bg-clip-text text-transparent" data-magicpath-id="294" data-magicpath-path="CreativePlusDashboard.tsx">
+                <div data-magicpath-id="472" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <h1 className="text-2xl font-bold bg-gradient-to-r from-[#0055A5] to-[#00A3E0] bg-clip-text text-transparent" data-magicpath-id="473" data-magicpath-path="CreativePlusDashboard.tsx">
                     CreativePlus
                   </h1>
-                  <p className="text-xs text-gray-500" data-magicpath-id="295" data-magicpath-path="CreativePlusDashboard.tsx">Marketing Platform</p>
+                  <p className="text-xs text-gray-500" data-magicpath-id="474" data-magicpath-path="CreativePlusDashboard.tsx">Marketing Platform</p>
                 </div>
               </motion.div>
 
-              <div className="flex items-center space-x-1" data-magicpath-id="296" data-magicpath-path="CreativePlusDashboard.tsx">
+              <div className="flex items-center space-x-1" data-magicpath-id="475" data-magicpath-path="CreativePlusDashboard.tsx">
                 {navItems.map((item, index) => {
                 const Icon = item.icon;
                 const isActive = activeNav === item.name;
@@ -1025,47 +1565,47 @@ export const CreativePlusDashboard = (_props: CreativePlusDashboardProps) => {
                   y: 0
                 }} transition={{
                   delay: index * 0.1
-                }} onClick={() => setActiveNav(item.name)} className={`relative px-4 py-2 rounded-lg flex items-center space-x-2 transition-all ${isActive ? 'text-[#0055A5] bg-[#00A3E0]/10' : 'text-gray-600 hover:text-[#0055A5] hover:bg-gray-50'}`} data-magicpath-id="297" data-magicpath-path="CreativePlusDashboard.tsx">
-                      <Icon className="w-5 h-5" data-magicpath-id="298" data-magicpath-path="CreativePlusDashboard.tsx" />
-                      <span className="font-medium" data-magicpath-id="299" data-magicpath-path="CreativePlusDashboard.tsx">{item.name}</span>
+                }} onClick={() => setActiveNav(item.name)} className={`relative px-4 py-2 rounded-lg flex items-center space-x-2 transition-all ${isActive ? 'text-[#0055A5] bg-[#00A3E0]/10' : 'text-gray-600 hover:text-[#0055A5] hover:bg-gray-50'}`} data-magicpath-id="476" data-magicpath-path="CreativePlusDashboard.tsx">
+                      <Icon className="w-5 h-5" data-magicpath-id="477" data-magicpath-path="CreativePlusDashboard.tsx" />
+                      <span className="font-medium" data-magicpath-id="478" data-magicpath-path="CreativePlusDashboard.tsx">{item.name}</span>
                       {isActive && <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#00A3E0] to-[#0055A5]" initial={false} transition={{
                     type: 'spring',
                     stiffness: 500,
                     damping: 30
-                  }} data-magicpath-id="300" data-magicpath-path="CreativePlusDashboard.tsx" />}
+                  }} data-magicpath-id="479" data-magicpath-path="CreativePlusDashboard.tsx" />}
                     </motion.button>;
               })}
               </div>
             </div>
 
-            <div className="flex items-center space-x-4" data-magicpath-id="301" data-magicpath-path="CreativePlusDashboard.tsx">
+            <div className="flex items-center space-x-4" data-magicpath-id="480" data-magicpath-path="CreativePlusDashboard.tsx">
               <motion.button whileHover={{
               scale: 1.05
             }} whileTap={{
               scale: 0.95
-            }} className="relative p-2 text-gray-600 hover:text-[#0055A5] hover:bg-gray-50 rounded-lg transition-colors" data-magicpath-id="302" data-magicpath-path="CreativePlusDashboard.tsx">
-                <Bell className="w-5 h-5" data-magicpath-id="303" data-magicpath-path="CreativePlusDashboard.tsx" />
-                <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" data-magicpath-id="304" data-magicpath-path="CreativePlusDashboard.tsx" />
+            }} className="relative p-2 text-gray-600 hover:text-[#0055A5] hover:bg-gray-50 rounded-lg transition-colors" data-magicpath-id="481" data-magicpath-path="CreativePlusDashboard.tsx">
+                <Bell className="w-5 h-5" data-magicpath-id="482" data-magicpath-path="CreativePlusDashboard.tsx" />
+                <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" data-magicpath-id="483" data-magicpath-path="CreativePlusDashboard.tsx" />
               </motion.button>
 
               <motion.button whileHover={{
               scale: 1.05
             }} whileTap={{
               scale: 0.95
-            }} className="flex items-center space-x-2 p-2 hover:bg-gray-50 rounded-lg transition-colors" data-magicpath-id="305" data-magicpath-path="CreativePlusDashboard.tsx">
-                <div className="w-8 h-8 bg-gradient-to-br from-[#00A3E0] to-[#0055A5] rounded-full flex items-center justify-center" data-magicpath-id="306" data-magicpath-path="CreativePlusDashboard.tsx">
-                  <User className="w-5 h-5 text-white" data-magicpath-id="307" data-magicpath-path="CreativePlusDashboard.tsx" />
+            }} className="flex items-center space-x-2 p-2 hover:bg-gray-50 rounded-lg transition-colors" data-magicpath-id="484" data-magicpath-path="CreativePlusDashboard.tsx">
+                <div className="w-8 h-8 bg-gradient-to-br from-[#00A3E0] to-[#0055A5] rounded-full flex items-center justify-center" data-magicpath-id="485" data-magicpath-path="CreativePlusDashboard.tsx">
+                  <User className="w-5 h-5 text-white" data-magicpath-id="486" data-magicpath-path="CreativePlusDashboard.tsx" />
                 </div>
-                <ChevronDown className="w-4 h-4 text-gray-600" data-magicpath-id="308" data-magicpath-path="CreativePlusDashboard.tsx" />
+                <ChevronDown className="w-4 h-4 text-gray-600" data-magicpath-id="487" data-magicpath-path="CreativePlusDashboard.tsx" />
               </motion.button>
             </div>
           </div>
         </div>
       </nav>
 
-      <div className="px-8 py-8" data-magicpath-id="309" data-magicpath-path="CreativePlusDashboard.tsx">
-        <div className="max-w-[1600px] mx-auto" data-magicpath-id="310" data-magicpath-path="CreativePlusDashboard.tsx">
-          <AnimatePresence mode="wait" data-magicpath-id="311" data-magicpath-path="CreativePlusDashboard.tsx">
+      <div className="px-8 py-8" data-magicpath-id="488" data-magicpath-path="CreativePlusDashboard.tsx">
+        <div className="max-w-[1600px] mx-auto" data-magicpath-id="489" data-magicpath-path="CreativePlusDashboard.tsx">
+          <AnimatePresence mode="wait" data-magicpath-id="490" data-magicpath-path="CreativePlusDashboard.tsx">
             {activeNav === 'Dashboard' && <motion.div key="dashboard" initial={{
             opacity: 0,
             x: -20
@@ -1077,7 +1617,7 @@ export const CreativePlusDashboard = (_props: CreativePlusDashboardProps) => {
             x: 20
           }} transition={{
             duration: 0.3
-          }} data-magicpath-id="312" data-magicpath-path="CreativePlusDashboard.tsx">
+          }} data-magicpath-id="491" data-magicpath-path="CreativePlusDashboard.tsx">
                 {renderDashboard()}
               </motion.div>}
             {activeNav === 'Copy Studio' && <motion.div key="copy-studio" initial={{
@@ -1091,8 +1631,22 @@ export const CreativePlusDashboard = (_props: CreativePlusDashboardProps) => {
             x: 20
           }} transition={{
             duration: 0.3
-          }} data-magicpath-id="313" data-magicpath-path="CreativePlusDashboard.tsx">
+          }} data-magicpath-id="492" data-magicpath-path="CreativePlusDashboard.tsx">
                 {renderCopyStudio()}
+              </motion.div>}
+            {activeNav === 'Design Studio' && <motion.div key="design-studio" initial={{
+            opacity: 0,
+            x: -20
+          }} animate={{
+            opacity: 1,
+            x: 0
+          }} exit={{
+            opacity: 0,
+            x: 20
+          }} transition={{
+            duration: 0.3
+          }} data-magicpath-id="493" data-magicpath-path="CreativePlusDashboard.tsx">
+                {renderDesignStudio()}
               </motion.div>}
           </AnimatePresence>
         </div>
