@@ -4,10 +4,15 @@
   
   # Publish directory where Vite outputs the built files
   publish = "dist"
-  
-  # Environment variables (if needed)
-  # [build.environment]
-  #   NODE_VERSION = "18"
+
+# Explicitly tell Netlify this is NOT a Next.js app
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--legacy-peer-deps"
+
+# Framework detection
+[dev]
+  framework = "#custom"
 
 # Redirect rules for SPA (Single Page Application)
 [[redirects]]
